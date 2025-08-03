@@ -9,7 +9,7 @@ namespace EjerciciosPOO2.Ejercicio2
     public class CuentaBancaria2
     {
         private string propietario ="";
-        protected double saldo; // Cambiado de private a protected
+        protected double saldo;
         public double limiteRetiro;
 
         public required string Propietario { get; set; }
@@ -17,7 +17,7 @@ namespace EjerciciosPOO2.Ejercicio2
         {
             Console.WriteLine($"El saldo actual de la cuenta de {propietario} es: Q{saldo}");
         }
-        //limite de retiro diario
+        
         public void Retirar(double cantidad)
         {
             if (cantidad <= saldo)
@@ -53,7 +53,7 @@ namespace EjerciciosPOO2.Ejercicio2
         
         public class CuentaAhorro : CuentaBancaria2
         {
-            public void CalcularInteres()
+            public void CalcularIntereses()
             {
             double tasaInteres = 0.07;
             saldo += saldo * tasaInteres;
@@ -61,7 +61,7 @@ namespace EjerciciosPOO2.Ejercicio2
         }
         public class CuentaCorriente : CuentaBancaria2
         {
-            public void CalcularInteres()
+            public void CalcularIntereses()
             {
                 double tasaInteres = 0.03;
                 saldo += saldo * tasaInteres;

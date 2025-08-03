@@ -10,29 +10,43 @@ namespace EjerciciosPOO2.Ejercicio3
     {
         public static void Ejecutar()
         {
-            Notificacion email = new NotificacionEmail();
+            /*Notificacion email = new NotificacionEmail();
             Notificacion sms = new NotificacionSMS();
             Notificacion push = new NotificacionPush();
             email.Enviar("Hola, este es una prueba de email");
             sms.Enviar("Hola, esta es una prueba de mensaje de texto");
-            push.Enviar("Hola, esta es una prueba de mensaje push");
+            push.Enviar("Hola, esta es una prueba de mensaje push");*/
 
-            ComandoVoz encenderLuces = new EncenderLuces();
-            ComandoVoz reproducirMusica = new ReproducirMusica();
-            ComandoVoz mostrarClima = new MostrarClima();
+            List<Notificacion> notificaciones = new List<Notificacion>
+            {
+                new NotificacionEmail(),
+                new NotificacionSMS(),
+                new NotificacionPush()
+            };
+
+            foreach (var notificacion in notificaciones)
+            {
+                notificacion.Enviar("Hola, esta es una prueba");
+            }
 
             EjecutaComandos ejecutaComandos = new EjecutaComandos();
-            ejecutaComandos.AgregarComando(encenderLuces);
-            ejecutaComandos.AgregarComando(reproducirMusica);
-            ejecutaComandos.AgregarComando(mostrarClima);
+            ejecutaComandos.AgregarComando(new EncenderLuces());
+            ejecutaComandos.AgregarComando(new ReproducirMusica());
+            ejecutaComandos.AgregarComando(new MostrarClima());
 
-            //Simula una caja registradora que recorra una lista de objetos Pago y procese cada uno.
-            
-        List<Pago> pagos = new List<Pago>
+
+            ejecutaComandos.EjecutarComandos();
+
+            List<Pago> pagos = new List<Pago>
             {
-                new PagoTarjetaCredito(),
-                new PagoEfectivo(),
-                new PagoTransferencia()
+                new PagoConTarjeta(),
+                new PagoConEfectivo(),
+                new PagoConTransferencia()
+            };
+
+            foreach (var pago in pagos)
+            {
+                pago.ProcesarPago();
             }
         }
     }

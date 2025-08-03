@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace EjerciciosPOO2.Ejercicio1
 {
-    public class Vehículo
+    public class Vehiculo
     {
-        private Boolean encendido;
+        public bool encendido { get; private set; }
         public void Encender()
         {
             Console.WriteLine("El vehículo ha sido encendido.");

@@ -8,11 +8,19 @@ namespace EjerciciosPOO2.Ejercicio1
 {
     public class CuentaBancaria
     {
-        private string propietario ="";
+        public string propietario { get; private set; }
         private double saldo;
-        public double limiteRetiro;
+        private double limiteRetiroDiario;
+        private double retiradoHoy;
 
-        public required string Propietario { get; set; }
+
+        public CuentaBancaria(string propietario, double saldoInicial, double limiteDiario)
+        {
+            this.propietario = propietario;
+            this.saldo = saldoInicial;
+            this.limiteRetiroDiario = limiteDiario;
+            this.retiradoHoy = 0;
+        }
         public void MostrarSaldo()
         {
             Console.WriteLine($"El saldo actual de la cuenta de {propietario} es: Q{saldo}");
@@ -20,21 +28,25 @@ namespace EjerciciosPOO2.Ejercicio1
         //limite de retiro diario
         public void Retirar(double cantidad)
         {
-            if (cantidad <= saldo)
+            if (cantidad <= 0)
             {
-                if (cantidad > limiteRetiro)
-                {
-                    Console.WriteLine($"No se puede retirar más de Q{limiteRetiro} al día.");
-                    return;
-                }
-                saldo -= cantidad;
-                limiteRetiro -= cantidad;
-                Console.WriteLine($"Se han retirado Q{cantidad}.");
+                Console.WriteLine("La cantidad a retirar debe ser mayor que 0");
+                return;
             }
-            else
+            if (cantidad > saldo)
             {
-                Console.WriteLine("Fondos insuficientes para realizar el retiro.");
+                Console.WriteLine("Fondos insuficientes.");
+                return;
             }
+            if (retiradoHoy + cantidad > limiteRetiroDiario)
+            {
+                Console.WriteLine($"Límite de retiro diario excedido");
+                return;
+            }
+
+            saldo -= cantidad;
+            retiradoHoy += cantidad;
+            Console.WriteLine($"Retiro de Q{cantidad} exitoso");
         }
 
     }

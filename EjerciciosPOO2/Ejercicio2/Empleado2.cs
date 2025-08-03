@@ -33,6 +33,7 @@ namespace EjerciciosPOO2.Ejercicio2
                 }
             }
         }
+    }
         public class Gerente : Empleado2
         {
             public void TomarDecision()
@@ -47,5 +48,4 @@ namespace EjerciciosPOO2.Ejercicio2
                 Console.WriteLine("Escribiendo código");
             }
         }
-    }
 }
